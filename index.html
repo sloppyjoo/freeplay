@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FreePlay Installer</title>
+<meta name="description" content="Adds FreePlay, an unofficial beta firmware, to your own copy of the official Polyend Play or Play+ firmware. Runs in your browser.">
+<style>
+:root {
+  --bg: #f4f3ef; --card: #ffffff; --ink: #1a1a18; --dim: #66655f; --line: #d9d7cf;
+  --accent: #2f62d9; --accent-ink: #ffffff; --warn-bg: #fff3d6; --warn-ink: #5c4300; --warn-line: #e6c56b;
+  --ok: #1d7a43; --bad: #b3261e; --drop: #eeedf8;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121211; --card: #1c1c1a; --ink: #f0efe9; --dim: #a3a29a; --line: #33332f;
+    --accent: #6d97ff; --accent-ink: #0d1424; --warn-bg: #33290f; --warn-ink: #f2d78c; --warn-line: #65521c;
+    --ok: #62c98b; --bad: #ff8a80; --drop: #1f2233;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+main { max-width: 640px; margin: 0 auto; padding: 40px 16px 64px; }
+h1 { font-size: 34px; line-height: 1.15; margin: 0 0 4px; letter-spacing: -0.01em; }
+.tag { color: var(--dim); margin: 0 0 24px; }
+h2 { font-size: 19px; margin: 32px 0 8px; }
+p { margin: 0 0 12px; }
+a { color: var(--accent); }
+code { font: 0.92em ui-monospace, Menlo, Consolas, monospace; overflow-wrap: anywhere; }
+.warn { background: var(--warn-bg); color: var(--warn-ink); border: 1px solid var(--warn-line); border-radius: 10px; padding: 14px 16px; }
+.warn p:last-child, .card p:last-child { margin-bottom: 0; }
+ol { padding-left: 22px; margin: 0 0 12px; }
+li { margin-bottom: 6px; }
+#drop { display: block; margin-top: 8px; border: 2px dashed var(--line); background: var(--card); border-radius: 12px; padding: 36px 16px; text-align: center; cursor: pointer; }
+#drop.over { border-color: var(--accent); background: var(--drop); }
+#drop:focus-within { border-color: var(--accent); }
+#drop strong { display: block; font-size: 19px; }
+#drop span { color: var(--dim); }
+#file { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-top: 14px; }
+.ok { color: var(--ok); font-weight: 600; }
+.bad { color: var(--bad); font-weight: 600; }
+.btn { display: inline-block; background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 9px; padding: 12px 18px; font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; }
+.small { font-size: 15px; color: var(--dim); }
+footer { margin-top: 40px; font-size: 14px; color: var(--dim); }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <h1>FreePlay Installer</h1>
+  <p class="tag">Version 0.1 beta, for the Polyend Play+ and the original Play with an RT processor.</p>
+
+  <div class="warn">
+    <p><strong>This is beta firmware.</strong> It will have bugs. Back up your SD card first, and don't install it right before a gig. FreePlay is unofficial and isn't supported by Polyend. You can go back to the official firmware at any time.</p>
+    <p><strong>It won't work on every original Play.</strong> Original Plays with a K66 processor aren't supported yet. The <a href="https://github.com/sloppyjoo/freeplay#readme">guide</a> explains how to tell which one you have.</p>
+  </div>
+
+  <h2>1. Download the official firmware</h2>
+  <p>Get it from <a href="https://polyend.com" rel="noopener">polyend.com</a>. It has to be exactly this version:</p>
+  <ol>
+    <li>Play+: <strong>1.3.0</strong> (<code>PlayPlus_v1.3.0.ppf</code>)</li>
+    <li>Original Play: <strong>1.6.0</strong> (<code>PolyendPlay_v1.6.0.ppf</code>)</li>
+  </ol>
+
+  <h2>2. Drop it here</h2>
+  <label id="drop">
+    <input id="file" type="file" accept=".ppf">
+    <strong>Drop the firmware file here</strong>
+    <span>or click to choose it</span>
+  </label>
+  <p class="small" style="margin-top:8px">Your file stays on your computer. Everything happens in this browser tab, and nothing is uploaded.</p>
+
+  <div id="status" class="card" role="status" aria-live="polite" hidden></div>
+
+  <div id="next" hidden>
+    <h2>3. Copy both files to your SD card</h2>
+    <ol>
+      <li>Back up your SD card, if you haven't already.</li>
+      <li>Copy the new FreePlay file <strong>and</strong> the official firmware file into the card's <code>Firmware</code> folder. The official file is your way back.</li>
+      <li>Keep the file name as it is. The device only lists firmware files with the right name.</li>
+      <li>Eject the card properly before you pull it out.</li>
+    </ol>
+    <h2>4. Flash it</h2>
+    <ol>
+      <li>Put the card in your device and turn it on.</li>
+      <li>Go to <em>Settings → Firmware → Update Firmware</em>.</li>
+      <li>Pick the FreePlay file and confirm.</li>
+      <li>The screen shows <em>Updating firmware, please do not power off</em> for about 30 seconds. Don't turn it off or pull the card out. It restarts by itself when it's finished.</li>
+    </ol>
+    <p>To go back, flash the official file the same way. If something goes wrong, see <a href="https://github.com/sloppyjoo/freeplay#going-back-to-the-official-firmware">Going back to the official firmware</a>.</p>
+  </div>
+
+  <footer>FreePlay isn't made by, affiliated with or endorsed by Polyend. Polyend, Play and Play+ are trademarks of Polyend. This page doesn't contain any Polyend firmware. <a href="https://github.com/sloppyjoo/freeplay#readme">Guide, features and how to report bugs</a>.</footer>
+</main>
+
+<script src="patcher/freeplay.js"></script>
+<script>
+(function () {
+  var PACKAGES = ['patches/PlayPlus.patch.json', 'patches/Play.patch.json'];
+  var statusEl = document.getElementById('status');
+  var nextEl = document.getElementById('next');
+  var drop = document.getElementById('drop');
+  var input = document.getElementById('file');
+  var lastUrl = null;
+
+  function show(html) {
+    statusEl.innerHTML = html;
+    statusEl.hidden = false;
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  function hex(buf) {
+    return Array.prototype.map.call(new Uint8Array(buf), function (b) {
+      return b.toString(16).padStart(2, '0');
+    }).join('');
+  }
+
+  function sha256(bytes) {
+    if (!window.crypto || !crypto.subtle) {
+      return Promise.reject(new Error('This browser can\'t run the safety check. Try a current Chrome, Firefox, Edge or Safari.'));
+    }
+    return crypto.subtle.digest('SHA-256', bytes).then(hex);
+  }
+
+  function loadPackages() {
+    return Promise.all(PACKAGES.map(function (u) {
+      return fetch(u).then(function (r) {
+        if (!r.ok) throw new Error('Could not load ' + u);
+        return r.json();
+      });
+    }));
+  }
+
+  function handle(file) {
+    nextEl.hidden = true;
+    show('Checking <code>' + escapeHtml(file.name) + '</code>…');
+    var data, inputHash;
+    file.arrayBuffer().then(function (buf) {
+      data = new Uint8Array(buf);
+      return sha256(data);
+    }).then(function (h) {
+      inputHash = h;
+      return loadPackages();
+    }).then(function (pkgs) {
+      var pkg = pkgs.filter(function (p) { return p.input_sha256 === inputHash; })[0];
+      if (!pkg) {
+        show('<p class="bad">That isn\'t a firmware file FreePlay knows.</p>' +
+             '<p>It needs to be the exact official file: <code>PlayPlus_v1.3.0.ppf</code> or <code>PolyendPlay_v1.6.0.ppf</code>. ' +
+             'If that\'s what you dropped, the download may be damaged, so download it again.</p>');
+        return;
+      }
+      show('Adding FreePlay for the ' + escapeHtml(pkg.device) + '…');
+      return new Promise(function (res) { setTimeout(res, 30); }).then(function () {
+        var out = FreePlay.apply(data, pkg);
+        return sha256(out).then(function (h) {
+          if (h !== pkg.output_sha256) {
+            show('<p class="bad">The result didn\'t match the tested build, so nothing was saved.</p>' +
+                 '<p>Please <a href="https://github.com/sloppyjoo/freeplay/issues">report this</a> and mention your browser.</p>');
+            return;
+          }
+          if (lastUrl) URL.revokeObjectURL(lastUrl);
+          lastUrl = URL.createObjectURL(new Blob([out], { type: 'application/octet-stream' }));
+          show('<p class="ok">Done. Your file matches the tested build, byte for byte.</p>' +
+               '<p><a class="btn" id="save" href="' + lastUrl + '" download="' + escapeHtml(pkg.output) + '">Save ' + escapeHtml(pkg.output) + '</a></p>' +
+               '<p class="small">For the ' + escapeHtml(pkg.device) + '.</p>');
+          nextEl.hidden = false;
+        });
+      });
+    }).catch(function (e) {
+      show('<p class="bad">Something went wrong.</p><p>' + escapeHtml(e.message || e) + '</p>');
+    });
+  }
+
+  input.addEventListener('change', function () { if (input.files[0]) handle(input.files[0]); });
+  ['dragenter', 'dragover'].forEach(function (t) {
+    drop.addEventListener(t, function (e) { e.preventDefault(); drop.classList.add('over'); });
+  });
+  ['dragleave', 'drop'].forEach(function (t) {
+    drop.addEventListener(t, function (e) { e.preventDefault(); drop.classList.remove('over'); });
+  });
+  drop.addEventListener('drop', function (e) {
+    if (e.dataTransfer.files[0]) handle(e.dataTransfer.files[0]);
+  });
+})();
+</script>
+</body>
+</html>

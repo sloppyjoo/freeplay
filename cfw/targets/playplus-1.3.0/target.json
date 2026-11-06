@@ -1,0 +1,237 @@
+{
+  "name": "playplus-1.3.0",
+  "device": "Polyend Play+",
+  "input": "PlayPlus_v1.3.0.ppf",
+  "input_sha256": "535a903dffea93b9e624c7d0f613823812f7f7b1df74c91e93e3e93e8de94876",
+  "output": "PlayPlus_FreePlay_01.ppf",
+  "update_prefix": "PlayPlus",
+  "recovery_note": "The bootloader lives below `0x60030000` and is not in the `.ppf`; this patch only changes application bytes, so it cannot touch the bootloader.",
+  "images": [
+    {
+      "name": "rt1062",
+      "base": "0x60030000",
+      "end": "0x60190a64",
+      "cpu": [
+        "-target",
+        "thumbv7em-none-eabihf",
+        "-mcpu=cortex-m7",
+        "-mfloat-abi=hard"
+      ],
+      "include": [
+        "."
+      ],
+      "symbols": [
+        "symbols.ld"
+      ],
+      "sources": [
+        "../../src/slice.c",
+        "../../src/sliceview.c",
+        "../../src/synthrand.c",
+        "../../src/screen.c",
+        "../../src/tap.c",
+        "../../src/delproj.c"
+      ],
+      "cave": [
+        "0x6018ca40",
+        "0x60190a40"
+      ],
+      "cave_fill": "0x00",
+      "ram": [
+        "0x20002700",
+        "0x20002800"
+      ],
+      "hooks": [
+        {
+          "what": "root Menu builder pointer (FUN_600c97c4 literal pool)",
+          "addr": "0x600c9820",
+          "expect": "0x600e9e59",
+          "symbol": "cfw_menu_build_root"
+        },
+        {
+          "what": "Samples submenu builder pointer (root builder literal pool)",
+          "addr": "0x600e9f30",
+          "expect": "0x600e7995",
+          "symbol": "cfw_menu_build_samples"
+        },
+        {
+          "what": "firmware version string pointer (FUN_600c83ec literal pool)",
+          "addr": "0x600c83f0",
+          "expect": "0x60078208",
+          "symbol": "cfw_version"
+        },
+        {
+          "what": "menu screen vtable +0x08 hide (FUN_60104e30), vtable 0x600860d4",
+          "addr": "0x600860dc",
+          "expect": "0x60104e31",
+          "symbol": "cfw_menu_screen_hide",
+          "vtable": "0x600860d4"
+        },
+        {
+          "what": "menu screen vtable +0x0c update (FUN_601057c0)",
+          "addr": "0x600860e0",
+          "expect": "0x601057c1",
+          "symbol": "cfw_menu_screen_update",
+          "vtable": "0x600860d4"
+        },
+        {
+          "what": "per-synth submenu builder pointer (FUN_600e810c literal pool, item+0x4c)",
+          "addr": "0x600e825c",
+          "expect": "0x600ea4c9",
+          "symbol": "cfw_menu_build_synth"
+        },
+        {
+          "what": "app vtable slot 1 (per-loop update)",
+          "addr": "0x60078228",
+          "expect": "0x600c84f5",
+          "symbol": "cfw_app_update",
+          "vtable": "0x60078224"
+        },
+        {
+          "what": "Settings submenu builder pointer (root builder literal pool)",
+          "addr": "0x600e9f50",
+          "expect": "0x600eac41",
+          "symbol": "cfw_menu_build_settings"
+        },
+        {
+          "what": "input listener vtable [0] pad",
+          "addr": "0x6007b27c",
+          "expect": "0x600d9cd5",
+          "symbol": "cfw_in_pad",
+          "vtable": "0x6007b27c"
+        },
+        {
+          "what": "input listener vtable [1] button",
+          "addr": "0x6007b280",
+          "expect": "0x600d9d95",
+          "symbol": "cfw_in_button",
+          "vtable": "0x6007b27c"
+        },
+        {
+          "what": "input listener vtable [2] knob",
+          "addr": "0x6007b284",
+          "expect": "0x600d9d3d",
+          "symbol": "cfw_in_knob",
+          "vtable": "0x6007b27c"
+        },
+        {
+          "what": "input listener vtable [3] track",
+          "addr": "0x6007b288",
+          "expect": "0x600d9d6d",
+          "symbol": "cfw_in_track",
+          "vtable": "0x6007b27c"
+        },
+        {
+          "what": "input listener vtable [4] encoder",
+          "addr": "0x6007b28c",
+          "expect": "0x600d9e5d",
+          "symbol": "cfw_in_encoder",
+          "vtable": "0x6007b27c"
+        },
+        {
+          "what": "File submenu builder pointer (root builder literal pool)",
+          "addr": "0x600e9f28",
+          "expect": "0x600e9fd9",
+          "symbol": "cfw_menu_build_file"
+        },
+        {
+          "what": "Sample Start / End parameter descriptors vtable [0] value text",
+          "addr": "0x6007b460",
+          "expect": "0x600da3dd",
+          "symbol": "cfw_fmt_startend",
+          "vtable": "0x6007b460"
+        },
+        {
+          "what": "pad LED set: LED object vtable +4",
+          "addr": "0x60076ebc",
+          "expect": "0x600ac581",
+          "symbol": "cfw_led_set",
+          "vtable": "0x60076eb8"
+        },
+        {
+          "what": "sample reader block: gain (fade in / out) call",
+          "kind": "bl",
+          "addr": "0x60112e3e",
+          "expect": "0x60112b74",
+          "symbol": "cfw_reader_gain"
+        },
+        {
+          "what": "sample reader block: gain (fade in / out) call",
+          "kind": "bl",
+          "addr": "0x60113126",
+          "expect": "0x60112b74",
+          "symbol": "cfw_reader_gain"
+        },
+        {
+          "what": "sample instrument note on: reads Start",
+          "kind": "bl",
+          "addr": "0x60110270",
+          "expect": "0x6010ddd8",
+          "symbol": "cfw_tgt_note"
+        },
+        {
+          "what": "sample instrument note on: reads End",
+          "kind": "bl",
+          "addr": "0x601102b2",
+          "expect": "0x6010ddd8",
+          "symbol": "cfw_tgt_note"
+        },
+        {
+          "what": "sample instrument note on: reads Attack",
+          "kind": "bl",
+          "addr": "0x60110348",
+          "expect": "0x6010ddd8",
+          "symbol": "cfw_tgt_note"
+        },
+        {
+          "what": "sample instrument note on: reads Decay",
+          "kind": "bl",
+          "addr": "0x60110370",
+          "expect": "0x6010ddd8",
+          "symbol": "cfw_tgt_note"
+        },
+        {
+          "what": "CC Mapping: channel list builder pointer (CC Mapping builder literal pool)",
+          "addr": "0x600e76e4",
+          "expect": "0x600e7cf9",
+          "symbol": "cfw_menu_build_cc"
+        }
+      ],
+      "entry_points": [
+        "cfw_menu_build_root",
+        "cfw_menu_build_samples",
+        "cfw_menu_build_slice",
+        "cfw_menu_screen_update",
+        "cfw_menu_screen_hide",
+        "cfw_menu_build_synth",
+        "cfw_menu_build_rand",
+        "cfw_app_update",
+        "cfw_menu_build_settings",
+        "cfw_in_pad",
+        "cfw_in_button",
+        "cfw_in_knob",
+        "cfw_in_track",
+        "cfw_in_encoder",
+        "cfw_menu_build_file",
+        "cfw_menu_build_delproj",
+        "cfw_fmt_startend",
+        "cfw_led_set"
+      ],
+      "ext": {
+        "at": "0x60190b00",
+        "limit": "0x601a0b00",
+        "after": "0x60190a64",
+        "magic": "0x58574643",
+        "sources": [
+          "../../src/export.c",
+          "../../src/startend.c",
+          "../../src/pages.c",
+          "../../src/colors.c",
+          "../../src/mod.c",
+          "../../src/lfoui.c",
+          "../../src/ccpreset.c",
+          "../../src/slicer.c"
+        ]
+      }
+    }
+  ]
+}

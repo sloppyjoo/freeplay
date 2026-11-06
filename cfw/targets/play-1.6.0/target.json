@@ -1,0 +1,228 @@
+{
+  "name": "play-1.6.0",
+  "device": "Polyend Play (original)",
+  "input": "stock_firmware/PolyendPlay_v1.6.0.ppf",
+  "input_sha256": "e32ce373f67de3cdec531756f2c627f53624b83e11f3f80d5a350ddfcf65a163",
+  "output": "PolyendPlay_FreePlay.ppf",
+  "update_prefix": "PolyendPlay",
+  "recovery_note": "RT units: the bootloader lives below `0x60020000` and is not in the `.ppf`; only application bytes change. The K66 image is byte-identical to stock in this file.",
+  "images": [
+    {
+      "name": "rt1062",
+      "base": "0x60020000",
+      "end": "0x600d9064",
+      "cpu": [
+        "-target",
+        "thumbv7em-none-eabihf",
+        "-mcpu=cortex-m7",
+        "-mfloat-abi=hard"
+      ],
+      "include": [
+        "rt1062"
+      ],
+      "symbols": [
+        "rt1062/symbols.ld"
+      ],
+      "sources": [
+        "../../src/slice.c",
+        "../../src/sliceview.c",
+        "../../src/screen.c",
+        "../../src/tap.c",
+        "../../src/delproj.c"
+      ],
+      "cave": [
+        "0x600d5200",
+        "0x600d9060"
+      ],
+      "cave_fill": "0x00",
+      "ram": [
+        "0x20001700",
+        "0x20001800"
+      ],
+      "hooks": [
+        {
+          "what": "root Menu builder pointer (static ctor 0x6005c478 literal pool)",
+          "addr": "0x6005c4d4",
+          "expect": "0x60059295",
+          "symbol": "cfw_menu_build_root"
+        },
+        {
+          "what": "Samples submenu builder pointer (root builder literal pool)",
+          "addr": "0x60059358",
+          "expect": "0x600598e9",
+          "symbol": "cfw_menu_build_samples"
+        },
+        {
+          "what": "firmware version string pointer (getter 0x6003fa40 literal pool)",
+          "addr": "0x6003fa44",
+          "expect": "0x600c2800",
+          "symbol": "cfw_version"
+        },
+        {
+          "what": "menu screen vtable +0x08 hide (Play+ FUN_60104e30), vtable 0x600ceecc stored by 0x6005626c",
+          "addr": "0x600ceed4",
+          "expect": "0x60069a49",
+          "symbol": "cfw_menu_screen_hide",
+          "vtable": "0x600ceecc"
+        },
+        {
+          "what": "menu screen vtable +0x0c update (Play+ FUN_601057c0)",
+          "addr": "0x600ceed8",
+          "expect": "0x6006a2cd",
+          "symbol": "cfw_menu_screen_update",
+          "vtable": "0x600ceecc"
+        },
+        {
+          "what": "app vtable slot 1 (per-loop update)",
+          "addr": "0x600c2814",
+          "expect": "0x6003fb45",
+          "symbol": "cfw_app_update",
+          "vtable": "0x600c2810"
+        },
+        {
+          "what": "Settings submenu builder pointer (root builder literal pool)",
+          "addr": "0x60059370",
+          "expect": "0x6005bdfd",
+          "symbol": "cfw_menu_build_settings"
+        },
+        {
+          "what": "input listener vtable [0] pad",
+          "addr": "0x600c5844",
+          "expect": "0x600502fd",
+          "symbol": "cfw_in_pad",
+          "vtable": "0x600c5844"
+        },
+        {
+          "what": "input listener vtable [1] button",
+          "addr": "0x600c5848",
+          "expect": "0x600503bd",
+          "symbol": "cfw_in_button",
+          "vtable": "0x600c5844"
+        },
+        {
+          "what": "input listener vtable [2] knob",
+          "addr": "0x600c584c",
+          "expect": "0x60050365",
+          "symbol": "cfw_in_knob",
+          "vtable": "0x600c5844"
+        },
+        {
+          "what": "input listener vtable [3] track",
+          "addr": "0x600c5850",
+          "expect": "0x60050395",
+          "symbol": "cfw_in_track",
+          "vtable": "0x600c5844"
+        },
+        {
+          "what": "input listener vtable [4] encoder",
+          "addr": "0x600c5854",
+          "expect": "0x60050491",
+          "symbol": "cfw_in_encoder",
+          "vtable": "0x600c5844"
+        },
+        {
+          "what": "File submenu builder pointer (root builder literal pool)",
+          "addr": "0x60059350",
+          "expect": "0x600597e5",
+          "symbol": "cfw_menu_build_file"
+        },
+        {
+          "what": "Sample Start / End parameter descriptors vtable [0] value text",
+          "addr": "0x600c5a24",
+          "expect": "0x60050965",
+          "symbol": "cfw_fmt_startend",
+          "vtable": "0x600c5a24"
+        },
+        {
+          "what": "pad LED set: LED object vtable +4",
+          "addr": "0x600c14d8",
+          "expect": "0x60023811",
+          "symbol": "cfw_led_set",
+          "vtable": "0x600c14d4"
+        },
+        {
+          "what": "sample reader block: gain (fade in / out) call",
+          "kind": "bl",
+          "addr": "0x600763f4",
+          "expect": "0x6007612c",
+          "symbol": "cfw_reader_gain"
+        },
+        {
+          "what": "sample reader block: gain (fade in / out) call",
+          "kind": "bl",
+          "addr": "0x60076662",
+          "expect": "0x6007612c",
+          "symbol": "cfw_reader_gain"
+        },
+        {
+          "what": "sample instrument note on: reads Start",
+          "kind": "bl",
+          "addr": "0x60073888",
+          "expect": "0x6007143c",
+          "symbol": "cfw_tgt_note"
+        },
+        {
+          "what": "sample instrument note on: reads End",
+          "kind": "bl",
+          "addr": "0x600738b2",
+          "expect": "0x6007143c",
+          "symbol": "cfw_tgt_note"
+        },
+        {
+          "what": "sample instrument note on: reads Attack",
+          "kind": "bl",
+          "addr": "0x6007394e",
+          "expect": "0x6007143c",
+          "symbol": "cfw_tgt_note"
+        },
+        {
+          "what": "sample instrument note on: reads Decay",
+          "kind": "bl",
+          "addr": "0x60073976",
+          "expect": "0x6007143c",
+          "symbol": "cfw_tgt_note"
+        },
+        {
+          "what": "CC Mapping: channel list builder pointer (CC Mapping builder literal pool)",
+          "addr": "0x60059500",
+          "expect": "0x60059ab1",
+          "symbol": "cfw_menu_build_cc"
+        }
+      ],
+      "entry_points": [
+        "cfw_menu_build_root",
+        "cfw_menu_build_samples",
+        "cfw_menu_build_slice",
+        "cfw_menu_screen_update",
+        "cfw_menu_screen_hide",
+        "cfw_app_update",
+        "cfw_menu_build_settings",
+        "cfw_in_pad",
+        "cfw_in_button",
+        "cfw_in_knob",
+        "cfw_in_track",
+        "cfw_in_encoder",
+        "cfw_menu_build_file",
+        "cfw_menu_build_delproj",
+        "cfw_fmt_startend",
+        "cfw_led_set"
+      ],
+      "ext": {
+        "at": "0x600d9100",
+        "limit": "0x600e9100",
+        "after": "0x600d9064",
+        "magic": "0x58574643",
+        "sources": [
+          "../../src/export.c",
+          "../../src/startend.c",
+          "../../src/pages.c",
+          "../../src/colors.c",
+          "../../src/mod.c",
+          "../../src/lfoui.c",
+          "../../src/ccpreset.c",
+          "../../src/slicer.c"
+        ]
+      }
+    }
+  ]
+}

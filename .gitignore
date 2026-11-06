@@ -1,0 +1,22 @@
+# Never commit Polyend firmware, or anything built from it
+*.ppf
+*.bin
+*.hex
+stock_firmware/
+
+# Build output
+cfw/build/
+cfw/release/
+*.o
+*.elf
+*.snap
+*.img
+link.map
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Mac
+.DS_Store

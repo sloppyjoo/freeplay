@@ -1,0 +1,7 @@
+# offline tools (disassembly, build, verify)
+capstone==5.0.7
+pyelftools
+# virtual Play / Play+ (cfw/vdev, cfw/tests/vdev_*.py); also needs mkfs.fat + mtools on PATH
+unicorn==2.1.4
+numpy
+pillow

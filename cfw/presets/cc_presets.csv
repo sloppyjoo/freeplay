@@ -1,0 +1,49 @@
+# Synth presets for MIDI > CC Mapping. Made with cfw/tools/gen_cc_presets.py, which checks every line against a
+# checkout of the MIDI Guide dataset and writes cfw/src/ccpresets.h.
+# CC numbers from MIDI Guide (https://github.com/pencilresearch/midi), CC BY-SA 4.0; selected and arranged here,
+# and this file is shared under the same licence. Each slot: "CC number=parameter" as the dataset names it; "-" keeps the slot.
+# The firmware's 8 slots are, in order: Cutoff, Resonance, Sample Attack, Sample Decay, Reverb Send, Delay Send, Overdrive, Bit Depth.
+# name;folder/device;slot1;slot2;slot3;slot4;slot5;slot6;slot7;slot8
+Korg minilogue xd;KORG/minilogue xd;43=Cutoff;44=Resonance;16=Amp EG attack;17=Amp EG decay;110=Reverb dry/wet;107=Delay dry/wet;84=Cutoff drive;24=LFO rate
+Korg minilogue;KORG/minilogue;43=Filter cutoff;44=Filter resonance;16=Amp EG attack;17=Amp EG decay;24=LFO rate;31=Delay feedback;21=EG decay;26=LFO depth
+Korg monologue;KORG/monologue;43=Filter cutoff;44=Resonance;16=Envelope attack;17=Envelope decay;24=LFO rate;26=LFO depth;28=Drive;25=Envelope intensity
+Korg prologue;KORG/prologue;43=Cutoff;44=Resonance;16=Attack;17=Decay;20=Attack;21=Decay;84=Drive;82=Low Cut
+Korg microKORG 2;KORG/microKORG2;74=Filter cutoff;71=Filter resonance;73=Amplifier envelope attack;75=Amplifier envelope decay;118=Reverb effect control 1;115=Delay effect control 1;83=Filter drive;84=Filter envelope intensity
+Novation Bass Station II;Novation/Bass Station II;16=Frequency;82=Resonance;90=Amp Env attack;91=Amp Env decay;18=LFO 1 speed;85=Mod Env depth;114=Overdrive;94=Distortion
+Novation Peak / Summit;Novation/Summit and Peak;29=Cutoff;79=Resonance;86=Amp attack;87=Amp decay;112=Reverb level;108=Delay level;80=Filter overdrive;104=Distortion level
+Arturia MicroFreak;Arturia/MicroFreak;23=Cutoff;83=Resonance;105=Envelope attack;106=Envelope decay;93=LFO rate (free);24=Cycling env amount;29=Envelope sustain;13=Shape
+Arturia MiniFreak;Arturia/MiniFreak;74=Filter Cutoff;71=Resonance;80=ENV Attack;81=ENV Decay;85=LFO1 Rate;24=VCF ENV Amount;87=LFO2 Rate;16=Shape1
+Arturia PolyBrute;Arturia/PolyBrute;23=Cutoff;83=Resonance;105=Attack;106=Decay;2=Reverb level;31=Delay level;85=Distortion;24=Filter envelope amount
+Arturia MatrixBrute;Arturia/MatrixBrute;23=Steiner Filter Cutoff;83=Steiner Resonance;105=Env 2 (VCA) Attack;106=Env 2 (VCA) Decay;91=LFO 1 Rate;24=Steiner Filter Env 1 Amount;81=Steiner Filter Drive;27=Master Cutoff
+Moog Subsequent 37;Moog/Subsequent 37;19=Filter cutoff;21=Filter resonance;28=Amplifier envelope attack;29=Amplifier envelope decay;3=LFO 1 rate;27=Filter envelope amount;18=Filter multidrive;8=LFO 2 rate
+Moog Sub Phatty;Moog/Sub Phatty;19=Filter cutoff frequency;21=Filter resonance;28=Amplifier EG attack;29=Amplifier EG decay;3=LFO rate;24=Filter EG decay;18=Multidrive amount;23=Filter EG attack
+Moog Minitaur;Moog/Minitaur;19=Filter: Cutoff;21=Filter: Resonance;28=VCA: Attack;29=VCA: Decay / Release;3=LFO: Rate;12=LFO: VCF Amount;24=VCF: Decay / Release;23=VCF: Attack
+Moog Muse;Moog/Muse;67=Filter 1 Cutoff;68=Filter 1 Resonance;86=VCA Env Attack;89=VCA Env Release;12=LFO 1 Rate;105=Delay Mix;69=Filter 1 Envelope Amount;72=Filter 2 Frequency
+Sequential Prophet-6;Sequential/Prophet-6;102=LOW Pass Freq;103=LOW Pass Resonance;43=VCA ENV Attack;44=VCA ENV Decay;51=Filter ENV Decay;47=LOW Pass ENV AMT;9=Distortion Amount;106=High Pass Freq
+Sequential OB-6;Dave Smith Instruments/OB-6;102=Filter frequency;103=Filter resonance;43=VCA envelope attack;44=VCA envelope decay;51=Filter envelope decay;47=Filter envelope amount;9=Distortion amount;74=Brightness
+Sequential Take 5;Sequential/Take 5;33=Filter Cutoff;34=Filter Resonance;46=ENV1 Attack;47=ENV1 Decay;24=Reverb WET DRY MIX;18=FX Depth MIX;35=Filter Drive;67=Distortion
+Sequential Prophet Rev2;Sequential/Prophet Rev2;102=Filter frequency;103=Resonance;118=Amp attack;119=Amp decay;17=FX mix;106=Filter env. amount;110=Filter decay;28=Osc mix
+Sequential Pro 3;Sequential/Pro 3;33=FLT Cutoff;34=FLT Resonance;43=VCA ENV Attack;44=VCA ENV Decay;18=FX1 MIX;26=FX2 MIX;36=FLT Drive;91=Distortion AMT
+Sequential Prophet-5;Sequential/Prophet-5 10;73=Cutoff;31=Resonance;104=Attack;106=Decay;46=LFO frequency;89=Envelope amount;47=LFO initial amount;105=Decay
+Oberheim OB-X8;Oberheim/OB-X8;33=Filter Frequency;34=Filter Resonance;45=Volume ENV Attack;46=Volume ENV Decay;51=LFO1 Rate;53=LFO1 Depth1;40=Filter ENV Decay;39=Filter ENV Attack
+Roland JU-06A;Roland/JU-06A;74=VCF FRQ;71=VCF RES;73=ENV ATK;75=ENV DEC;3=LFO Rate;22=VCF ENV Depth;72=ENV REL;20=HPF Freq
+Roland JX-08;Roland/JX-08;3=VCF cutoff;9=VCF resonance;83=ENV-1 attack;80=ENV-1 decay;91=Reverb send level;29=LFO rate;90=ENV-2 decay;79=HPF cutoff
+Roland JP-08;Roland/JP-08;74=VCF cutoff;71=VCF resonance;47=ENV-1 attack;52=ENV-1 decay;3=LFO rate;91=Delay level;83=Delay feedback;26=HPF cutoff
+Roland SH-01A;Roland/SH-01A;74=VCF cutoff;71=VCF resonance;73=Envelope attack;75=Envelope decay;3=LFO rate;24=VCF envelope depth;72=Envelope release;30=Envelope sustain
+Roland S-1;Roland/S-1;74=Filter Frequency;71=Filter Resonance;73=Envelope Attack;75=Envelope Decay;91=EFX Reverb Level;92=EFX Delay Level;24=Filter Envelope Depth;25=Filter LFO Depth
+Roland SE-02;Roland/SE-02;74=Filter cutoff;71=Filter emphasis;47=Filter 1 attack;5=Filter 1 decay;102=LFO rate;91=Delay amount;83=Delay regen;51=Mix feedback
+Roland System-8;Roland/System-8;3=Filter: Cutoff;9=Filter: Reso;89=Amp: Attack;90=Amp: Decay;91=Reverb: Level;94=Delay/Chorus: Level;29=LFO: Rate;79=Filter: HPF Cutoff
+Roland JD-Xi;Roland/JD-Xi;74=Cutoff;71=Resonance;73=Attack time;75=Decay time;91=Reverb send level;94=Delay send level;72=Release time;-
+Roland TB-03;Roland/TB-03;74=Filter cutoff frequency;71=Resonance;-;75=Decay;-;19=Delay feedback;17=Overdrive;18=Delay time
+Behringer DeepMind 12;Behringer/Deepmind 12;29=VCF Freq;30=VCF Reso;37=VCA A;39=VCA D;16=LFO1 Rate;18=LFO2 Rate;41=VCA R;35=HPF Freq
+Behringer Pro-800;Behringer/Pro 800;87=VCF Freq;88=VCF Reso;-;-;104=LFO Freq;105=LFO Amount;102=Pmod Filter Envamount;109=Moddelay
+Elektron Analog Four MKII;Elektron/Analog Four MKII;18=Filter 1: Frequency;89=Filter 1: Resonance;104=Amp Env: Attack;105=Amp Env: Decay;93=Amp: Reverb Send;92=Amp: Delay Send;86=Filter 1: Overdrive;102=Filter 1: Envelope Depth
+Elektron Digitone;Elektron/Digitone;23=Filter frequency;24=Resonance;104=Attack time;105=Decay time;14=Reverb send;13=Delay send;9=Drive;25=Env depth
+Elektron Model:Samples;Elektron/Model Samples;74=Cutoff;71=Resonance;-;80=Decay time;13=Reverb send;12=Delay send;7=Volume + distortion;-
+Waldorf Blofeld;Waldorf/Blofeld;69=Filter 1 cutoff;70=Filter 1 resonance;101=Amp envelope attack;102=Amp envelope decay;93=FX 1 mix;94=FX 2 mix;71=Filter 1 drive;73=Filter 1 envelope amount
+ASM Hydrasynth;ASM/Hydrasynth;74=F1 Cutoff;71=F1 RES;81=ENV1 Attack;82=ENV1 Decay;91=Reverb DRY WET;92=Delay DRY WET;50=F1 Drive;54=F1 Env1amt
+Modal Cobalt8;Modal Electronics/Cobalt8;34=Cutoff;35=Resonance;26=AEG Attack;27=AEG Decay;36=LFO1 Rate;37=LFO1 Depth;23=FEG Decay;18=Osc Mix
+Dreadbox Nymphes;Dreadbox/Nymphes;74=LPF cutoff;71=Resonance;73=Amp EG attack;84=Amp EG decay;78=Reverb mix;18=LFO 1 rate;80=Filter EG decay;81=HPF cutoff
+Access Virus TI;Access/Virus TI;40=Filter1 Cutoff;42=Filter1 Resonance;59=AMP EG Attack;60=AMP EG Decay;67=LFO1 Rate;104=Chorus Mix;55=Filter EG Decay;54=Filter EG Attack
+UDO Super 6;UDO Audio/Super 6;74=VCF cutoff frequency;71=VCF resonance;53=Env 1 attack;54=Env 1 decay;17=LFO 1 rate;91=Delay level;41=VCF drive;45=VCF env amt
+Yamaha reface CS;Yamaha/reface CS;74=Filter cutoff;71=Filter resonance;73=EG attack time;75=EG decay time;76=LFO speed;77=LFO depth;72=EG release time;79=EG sustain level

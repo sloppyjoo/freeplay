@@ -1,0 +1,19 @@
+name: Original Play test report
+description: You tried it on an original Play. Good or bad, this helps a lot.
+labels: [hardware-report]
+body:
+  - type: dropdown
+    id: result
+    attributes:
+      label: Did it work?
+      options:
+        - Yes, the Slice menu appeared (RT)
+        - No Slice menu, everything else looks normal (probably K66)
+        - It didn't update, or didn't start properly
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: What did you try?
+      description: docs/TESTING.md has a checklist. Anything you tried is useful. Tell me if you had to use the reset button, and whether it got you back.
